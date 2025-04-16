@@ -73,7 +73,7 @@ function App() {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
   return (
-    <div className="min-h-screen bg-pack-train bg-cover flex items-center justify-center px-4 bg-">
+    <div className="min-h-screen bg-primary bg-cover flex items-center justify-center px-4 bg-">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 ">
         <h1 className="text-2xl font-bold text-center mb-2">
           📋 PWA To-Do List
