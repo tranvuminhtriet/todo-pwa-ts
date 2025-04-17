@@ -82,12 +82,13 @@ self.addEventListener("message", (event) => {
 // 🔔 Simulate push notifications every 10 seconds (test/demo only)
 self.addEventListener("activate", () => {
   console.log("Service worker activated ✅");
-
-  setInterval(() => {
-    self.registration.showNotification("🔔 Demo Notification", {
-      body: "This is a test notification sent every 10 seconds.",
-      icon: "/logo192.png",
-      tag: "demo-push",
-    });
-  }, 10000);
+  Notification.requestPermission().then((result) => {
+    setInterval(() => {
+      self.registration.showNotification("🔔 Demo Notification", {
+        body: "This is a test notification sent every 10 seconds.",
+        icon: "/logo192.png",
+        tag: "demo-push",
+      });
+    }, 10000);
+  });
 });
