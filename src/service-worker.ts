@@ -80,15 +80,13 @@ self.addEventListener("message", (event) => {
 // Any other custom service worker logic can go here.
 
 // 🔔 Simulate push notifications every 10 seconds (test/demo only)
-self.addEventListener("activate", () => {
-  console.log("Service worker activated ✅");
-  Notification.requestPermission().then((result) => {
-    setInterval(() => {
-      self.registration.showNotification("🔔 Demo Notification", {
-        body: "This is a test notification sent every 10 seconds.",
-        icon: "/logo192.png",
-        tag: "demo-push",
-      });
-    }, 10000);
-  });
+self.addEventListener("push", (event) => {
+  const title = "🔔 Push Notification";
+  const options = {
+    body: "This is a simulated push notification!",
+    icon: "/logo192.png",
+    tag: "test-push",
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
 });
