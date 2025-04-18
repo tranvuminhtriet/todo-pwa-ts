@@ -79,13 +79,14 @@ self.addEventListener("message", (event) => {
 
 // Any other custom service worker logic can go here.
 
-// 🔔 Simulate push notifications every 10 seconds (test/demo only)
 self.addEventListener("push", (event) => {
-  const title = "🔔 Push Notification";
+  if (!event.data) return;
+
+  const data = event.data.json();
+  const title = data.title || "Notification";
   const options = {
-    body: "This is a simulated push notification!",
+    body: data.body || "",
     icon: "/logo192.png",
-    tag: "test-push",
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

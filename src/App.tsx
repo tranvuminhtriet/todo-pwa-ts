@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { subscribeToPush } from "./subscribeToPushNoti";
 
 type Todo = {
   id: number;
@@ -81,6 +82,7 @@ function App() {
         }
       });
     }
+    subscribeToPush();
   }, []);
 
   return (
