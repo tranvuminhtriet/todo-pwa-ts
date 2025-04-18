@@ -72,6 +72,17 @@ function App() {
   const deleteTodo = (id: number) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
+
+  useEffect(() => {
+    if ("Notification" in window && "serviceWorker" in navigator) {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.");
+        }
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-primary bg-cover flex items-center justify-center px-4 bg-">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 ">
