@@ -29,7 +29,23 @@ export async function subscribeToPush() {
     });
 
     console.log("✅ Push Subscription:", JSON.stringify(subscription, null, 2));
-    alert("Subscription successful! Check console.");
+    try {
+      const res = await fetch("http://localhost:4000/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(subscription),
+      });
+
+      if (res.ok) {
+        console.log("✅ Subscription sent to server");
+      } else {
+        console.error("❌ Failed to send subscription to server");
+      }
+    } catch (err) {
+      console.error("❌ Error sending subscription to server", err);
+    }
   } else {
     console.warn("Push messaging is not supported");
   }
