@@ -30,13 +30,16 @@ export async function subscribeToPush() {
 
     console.log("✅ Push Subscription:", JSON.stringify(subscription, null, 2));
     try {
-      const res = await fetch("http://localhost:4000/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(subscription),
-      });
+      const res = await fetch(
+        "https://web-push-express-production.up.railway.app/api/subscribe",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(subscription),
+        }
+      );
 
       if (res.ok) {
         console.log("✅ Subscription sent to server");
